@@ -35,7 +35,7 @@ After starting the application, open your browser and navigate to `http://localh
 
 ### Adding Tasks
 
-- First input is a number input made for adding randomly generated tasks.
+- First input is a number input made for adding randomly generated tasks from DummyJSON ToDo API.
 - Enter number(no more than 10 can be generated at onece) of randomly task in the input field. 
 - Click the "Add" button to add the task.
 
