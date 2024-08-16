@@ -3,15 +3,6 @@
 
 A simple, intuitive, and responsive todo list application to manage your daily tasks.
 
-## Table of Contents
-
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Features](#features)
-4. [Contributing](#contributing)
-5. [License](#license)
-6. [Contact](#contact)
-
 ## Installation
 
 ### Prerequisites
@@ -46,11 +37,11 @@ After starting the application, open your browser and navigate to `http://localh
 
 - First input is a number input made for adding randomly generated tasks.
 - Enter number(no more than 10 can be generated at onece) of randomly task in the input field. 
-- Click the "Add" button to save the task.
+- Click the "Add" button to add the task.
 
-- Second fils is for manualy adding tasks.
+- Second input is for manualy adding tasks.
 - Enter a task in the input field.
-- Click the "Add" button to save the task.
+- Click the "Add" button to add the task.
 
 ### Deleting Tasks
 

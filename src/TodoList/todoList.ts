@@ -327,16 +327,31 @@ template.innerHTML = `
     }
   }
 
-  .name-on-top{
-  text-align: center;
-  background-color: rgb(54 152 225 / 10%);
-  color: #5d94c0;
-  border-radius: 8px;
-  font-size: 2rem;
+  todo-item {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  } 
+
+  .dragging {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+
+  .name-on-top {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: max-content;
+    font-style: italic;
   }
 </style>
 <div class="todo-container">
-  <div class="name-on-top">Damir Penavić</div>
+  <div class="name-on-top">Damir Penavić 📋</div>
+  <hr>
   <div class="todo-header-title">
     <div class="title-header">To-Do List</div>
   </div>
@@ -757,88 +772,93 @@ export class TodoList extends HTMLElement {
     }
 
     handleDragStart(event: DragEvent) {
-        const target = event.target as HTMLElement;
-        if (target) {
-            this.draggedItem = target;
-            event.dataTransfer?.setData('text/html', target.outerHTML);
-            event.dataTransfer?.setDragImage(target, 0, 0);
-        }
+      const target = event.target as HTMLElement;
+      if (target) {
+          this.draggedItem = target;
+          target.style.opacity = '0.5'; // Make the dragged item semi-transparent
+          event.dataTransfer?.setData('text/plain', '');
+          event.dataTransfer?.setDragImage(target, 0, 0); // Use the actual element as the drag image
+      }
     }
 
     handleDragOver(event: DragEvent) {
-        event.preventDefault();
+      event.preventDefault(); // Necessary to allow dropping
+      const target = event.target as HTMLElement;
+      const todoItem = target.closest('todo-item') as HTMLElement;
+      const todoListContainer = this.shadowRoot?.querySelector('#todo-list') as HTMLUListElement | null;
+
+      if (todoListContainer && todoItem && this.draggedItem && todoItem !== this.draggedItem) {
+          // Swap the positions of the dragged item and the item under the mouse
+          const draggedIndex = Array.from(todoListContainer.children).indexOf(this.draggedItem);
+          const targetIndex = Array.from(todoListContainer.children).indexOf(todoItem);
+
+          if (draggedIndex < targetIndex) {
+              todoListContainer.insertBefore(this.draggedItem, todoItem.nextSibling);
+          } else {
+              todoListContainer.insertBefore(this.draggedItem, todoItem);
+          }
+      }
     }
 
     handleDrop(event: DragEvent) {
-        event.preventDefault();
-        const todoListContainer = this.shadowRoot?.querySelector('#todo-list') as HTMLUListElement | null;
-        const target = event.target as HTMLElement;
-
-        if (todoListContainer && this.draggedItem && target !== this.draggedItem) {
-            const dropIndex = Array.from(todoListContainer.children).indexOf(target.closest('todo-item') as HTMLElement);
-            const draggedIndex = Array.from(todoListContainer.children).indexOf(this.draggedItem);
-
-            if (dropIndex > draggedIndex) {
-                target.closest('todo-item')?.after(this.draggedItem);
-            } else {
-                target.closest('todo-item')?.before(this.draggedItem);
-            }
-
-            this.draggedItem.style.opacity = '1';
-            this.draggedItem = null;
-        }
+      event.preventDefault();
+      const draggingElement = this.draggedItem as HTMLElement;
+      if (draggingElement) {
+          draggingElement.style.opacity = '1'; // Reset the opacity after drop
+          this.draggedItem = null;
+      }
     }
 
     deleteAllTasks() {
-        const shadow = this.shadowRoot;
-        if (shadow) {
-            const allTasksList = shadow.querySelector('#todo-list') as HTMLUListElement | null;
-            const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+      const shadow = this.shadowRoot;
+      if (shadow) {
+          const allTasksList = shadow.querySelector('#todo-list') as HTMLUListElement | null;
+          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
 
-            if (allTasksList) {
-              allTasksList.innerHTML = '';
+          if (allTasksList) {
+            allTasksList.innerHTML = '';
 
-              // Show the placeholder text after deleting all tasks
-              if (placeholderText) {
-                placeholderText.style.display = 'block';
-              }
+            // Show the placeholder text after deleting all tasks
+            if (placeholderText) {
+              placeholderText.style.display = 'block';
             }
-            this.updateTaskCounters();
-        }
+          }
+          this.updateTaskCounters();
+      }
     }
 
     deleteAllManualTasks() {
-        const shadow = this.shadowRoot;
-        if (shadow) {
-            const manualTasks = shadow.querySelectorAll('.manual-task');
-            const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+      const shadow = this.shadowRoot;
+      if (shadow) {
+          const manualTasks = shadow.querySelectorAll('.manual-task');
+          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
 
-            manualTasks.forEach(task => task.remove());
+          manualTasks.forEach(task => task.remove());
 
-            // Show the placeholder text after deleting all tasks
-            if (placeholderText) {
-              placeholderText.style.display = 'block';
-            }
-        }
+          // Show the placeholder text after deleting all tasks
+          if (placeholderText) {
+            placeholderText.style.display = 'block';
+          }
+      }
 
-        this.updateTaskCounters();
+      this.updateTaskCounters();
     }
 
     deleteAllApiTasks() {
-        const shadow = this.shadowRoot;
-        if (shadow) {
-            const apiTasks = shadow.querySelectorAll('.api-task');
-            const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+      const shadow = this.shadowRoot;
+      if (shadow) {
+          const apiTasks = shadow.querySelectorAll('.api-task');
+          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
 
-            apiTasks.forEach(task => task.remove());
+          apiTasks.forEach(task => task.remove());
 
-            // Show the placeholder text after deleting all tasks
-            if (placeholderText) {
-              placeholderText.style.display = 'block';
-            }
-        }
+          // Show the placeholder text after deleting all tasks
+          if (placeholderText) {
+            placeholderText.style.display = 'block';
+          }
+      }
 
-        this.updateTaskCounters();
+      this.updateTaskCounters();
     }
 
     updateTaskCounters() {
