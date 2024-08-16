@@ -14,7 +14,7 @@ template.innerHTML = `
     margin: 0;
   }
 
-  .task-container {
+  .task-list__item {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -26,16 +26,16 @@ template.innerHTML = `
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
 
-  .task-container:hover {
+  .task-list__item:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
 
-  .task {
+  .task-list__text {
     flex-grow: 1;
     font-size: 16px;
   }
 
-  .toggle-completed {
+  .task-list__toggle-completed {
     width: 20px;
     height: 20px;
     cursor: pointer;
@@ -48,12 +48,12 @@ template.innerHTML = `
     align-items: centr;
   }
 
-  .toggle-completed.completed {
+  .task-list__toggle-completed.completed {
     background-color: #3786ec; /* Blue background when completed */
     border-color: #3786ec;
   }
 
-  .delete-btn {
+  .task-list__delete-btn {
     background-color: #ff4d4d;
     border: none;
     color: white;
@@ -63,17 +63,17 @@ template.innerHTML = `
     transition: background-color 0.3s;
   }
 
-  .delete-btn:hover {
+  .task-list__delete-btn:hover {
     background-color: #ff1a1a;
   }
 </style>
 
-<div class="task-container">
-  <button class="toggle-completed">
+<div class="task-list__item">
+  <button class="task-list__toggle-completed">
     <i class="fa-solid fa-check" style="color: #ffffff;"></i>
   </button>
-  <span class="task">Your task here</span>
-  <button class="delete-btn">
+  <span class="task-list__text">Your task here</span>
+  <button class="task-list__delete-btn">
     <i class="fa-solid fa-trash"></i>
   </button>
 </div>
@@ -87,12 +87,12 @@ export class TodoItem extends HTMLElement {
   }
 
   connectedCallback() {
-    const task = this.getAttribute('task') || 'No task provided';
+    const task = this.getAttribute('task-list__text') || 'No task provided';
     const completed = this.getAttribute('completed') === 'true';
 
-    const taskElement = this.shadowRoot?.querySelector('.task') as HTMLSpanElement;
-    const toggleCompletedElement = this.shadowRoot?.querySelector('.toggle-completed') as HTMLButtonElement;
-    const deleteBtnElement = this.shadowRoot?.querySelector('.delete-btn') as HTMLElement;
+    const taskElement = this.shadowRoot?.querySelector('.task-list__text') as HTMLSpanElement;
+    const toggleCompletedElement = this.shadowRoot?.querySelector('.task-list__toggle-completed') as HTMLButtonElement;
+    const deleteBtnElement = this.shadowRoot?.querySelector('.task-list__delete-btn') as HTMLElement;
 
     if (taskElement) {
       taskElement.textContent = task;

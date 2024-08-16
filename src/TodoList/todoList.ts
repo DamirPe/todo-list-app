@@ -23,7 +23,7 @@ template.innerHTML = `
     margin: 0;
   }
 
-  .todo-container {
+  .todo-list__items {
     font-family: 'Lato', sans-serif;
     background-color: #fff;
     padding: 20px;
@@ -32,13 +32,13 @@ template.innerHTML = `
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
 
-  .todo-header {
+  .todo-list__header {
     margin-bottom: 10px;
     text-align: center;
     align-items: center;
   }
 
-  #new-todo-input, #number-of-api-items {
+  #todo-list__input--new-task, #todo-list__input--api-count {
     width: fill;
     padding: 10px;
     border: 1px solid #ccc;
@@ -46,12 +46,12 @@ template.innerHTML = `
     margin-right: 10px;
   }
 
-  #new-todo-input:focus, #number-of-api-items:focus {
+  #todo-list__input--new-task:focus, #todo-list__input--api-count:focus {
     border-color: #4CAF50;
     box-shadow: 0 0px 2px #4CAF50;
   }
 
-  #add-todo-btn, #add-todo-api-items-btn {
+  #todo-list__button--add-task, #todo-list__button--add-api-task {
     padding: 10px 20px;
     border: none;
     background-color: #4CAF50;
@@ -62,19 +62,13 @@ template.innerHTML = `
     display: flex
   }
 
-  #add-todo-btn:hover, #add-todo-api-items-btn:hover {
+  #todo-list__button--add-task:hover, #todo-list__button--add-api-task:hover {
     background-color: #45a049;
   }
 
-  .todo-list {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .todo-list li {
+  .todo-list__items li {
     background-color: #f9f9f9;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 10px;
     display: flex;
@@ -82,19 +76,19 @@ template.innerHTML = `
     cursor: move;
   }
 
-  .api-task {
+  .todo-list__item--api {
     background-color: #e0f7fa;
   }
 
-  .manual-task {
+  .todo-list__item--manual {
     background-color: #f1f8e9;
   }
 
-  .delete-btn:hover {
+  .todo-list__button--delete:hover {
     background-color: #ff1a1a;
   }
 
-  .delete-btn {
+  .todo-list__button--delete {
     border: none;
     background-color: #ff4d4d;
     color: white;
@@ -105,7 +99,7 @@ template.innerHTML = `
     margin-bottom: 0.5rem;
   }
 
-  .delete-all-manual-btn:hover, .delete-all-api-btn:hover {
+  .todo-list__button--delete-manual:hover, .todo-list__button--delete-api:hover {
     background-color: #ff1a1a;
   }
 
@@ -119,16 +113,16 @@ template.innerHTML = `
     outline: none;
   }
 
-  .api-task {
+  .todo-list__item--api {
     font-style: italic;
     color: #0015b9;
   }
 
-  .manual-task{
+  .todo-list__item--manual{
     color: #009d2e;
   }
 
-  .todo-header div {
+  .todo-list__header div {
     margin: 0.5em;
     color: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -138,24 +132,24 @@ template.innerHTML = `
     text-align: left;
   }
 
-  .todo-header div input {
+  .todo-list__header div input {
     width: 100%;
   }
 
-  .title-header {
+  .todo-list__title {
     font-size: 2rem;
     display: flex;
     align-items: center;
   }
 
-  .delete-btn-div div {
+  .todo-list__delete-controls div {
     display: flex;
     align-items: center;
     justify-content: right;
     margin: 0.2em;
   }
 
-  .todo-header-title {
+  .todo-list__header-title {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
@@ -171,12 +165,12 @@ template.innerHTML = `
     display: block;
   }
 
-  .todo-stats {
+  .todo-list__stats {
     display: flex;
     justify-content: center;
   }
 
-  .todo-stats div {
+  .todo-list__stats div {
     margin: 0.5em;
     padding: 0.5em;
     border-radius: 1rem;
@@ -185,24 +179,18 @@ template.innerHTML = `
     padding-right: 2rem;
   }
 
-  .todo-stats div:hover {
+  .todo-list__stats div:hover {
     cursor: pointer;
     color: white;
     background-color: #739cd5;
     border: none;
   }
 
-  .active-filter {
+  .todo-list__filter--active {
     cursor: pointer;
     color: white;
     background-color: #739cd5;
     border: none;
-  }
-
-  .delete-all-button-container {
-    display: flex;
-    justify-content: right;
-    margin-top: 1rem;
   }
 
   /* Message Styles for Success and Error */
@@ -231,7 +219,7 @@ template.innerHTML = `
       background-color: #f44336;
   }
 
-  .task-input-div {
+  .todo-list__input-container {
     width: 50%;
   }
 
@@ -239,7 +227,7 @@ template.innerHTML = `
     cursor: grab;
   }
 
-  #placeholder-text {
+  #todo-list__placeholder {
    text-align: center;
   }
 
@@ -260,7 +248,7 @@ template.innerHTML = `
     background-color: rgba(0, 0, 0, 0.4);
   }
 
-  .modal-content {
+  .modal__content {
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
@@ -271,13 +259,13 @@ template.innerHTML = `
     text-align: center;
   }
 
-  .modal-buttons {
+  .modal__buttons {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
   }
 
-  .modal-buttons button {
+  .modal__buttons button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -285,21 +273,21 @@ template.innerHTML = `
     transition: background-color 0.3s;
   }
 
-  .modal-buttons .confirm-btn {
+  .modal__buttons .modal__button--confirm {
     background-color: #4CAF50;
     color: white;
   }
 
-  .modal-buttons .confirm-btn:hover {
+  .modal__buttons .modal__button--confirm:hover {
     background-color: #45a049;
   }
 
-  .modal-buttons .cancel-btn {
+  .modal__buttons .modal__button--cancel {
     background-color: #ff4d4d;
     color: white;
   }
 
-  .modal-buttons .cancel-btn:hover {
+  .modal__buttons .modal__button--cancel:hover {
     background-color: #ff1a1a;
   }
 
@@ -308,7 +296,7 @@ template.innerHTML = `
   }
 
   @media(max-width: 600px){
-    .input-div {
+    .todo-list__input-group {
       display: flex;
       flex-direction: column;
     }
@@ -321,7 +309,7 @@ template.innerHTML = `
     display: block;
     }
 
-    .todo-stats div {
+    .todo-list__stats div {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
     }
@@ -336,60 +324,64 @@ template.innerHTML = `
     opacity: 0.8;
   }
 
+  ul {
+    padding: 0px;
+  }
+
 </style>
-<div class="todo-container">
-  <div class="todo-header-title">
-    <div class="title-header">To-Do List</div>
+<div class="todo-list__items">
+  <div class="todo-list__header-title">
+    <div class="todo-list__title">To-Do List</div>
   </div>
-  <div class="todo-header">
-    <div class="input-div">
+  <div class="todo-list__header">
+    <div class="todo-list__input-group">
       <div id="hide-input-description-3" class="input-description">
         Add randomly generated To-Do tasks. Maximum number is 10.
       </div>
-      <div class="task-input-div">
-        <input type="number" id="number-of-api-items" placeholder="Number of randomly generated tasks">
-        <button id="add-todo-api-items-btn"><i class="fa-solid fa-plus"></i>&nbsp;Add</button>
+      <div class="todo-list__input-container">
+        <input type="number" id="todo-list__input--api-count" placeholder="Number of randomly generated tasks">
+        <button id="todo-list__button--add-api-task"><i class="fa-solid fa-plus"></i>&nbsp;Add</button>
       </div>
       <div id="hide-input-description-1" class="input-description">
         Add randomly generated To-Do tasks. Maximum number is 10.
       </div>
     </div>
-    <div class="input-div">
+    <div class="todo-list__input-group">
       <div id="hide-input-description-4" class="input-description">
           Add a new taks to the list.
       </div>
-      <div class="task-input-div">
-        <input type="text" id="new-todo-input" placeholder="Add a new task">
-        <button id="add-todo-btn"><i class="fa-solid fa-plus"></i>&nbsp;Add</button>
+      <div class="todo-list__input-container">
+        <input type="text" id="todo-list__input--new-task" placeholder="Add a new task">
+        <button id="todo-list__button--add-task"><i class="fa-solid fa-plus"></i>&nbsp;Add</button>
       </div>
       <div id="hide-input-description-2" class="input-description">
           Add a new taks to the list.
       </div>
     </div>
   </div>
-  <div class="todo-stats">
+  <div class="todo-list__stats">
     <div id="show-all-btn">Total&nbsp;(<span id="total-tasks">0</span>)</div>
     <div id="show-completed-btn">Completed&nbsp;(<span id="completed-tasks">0</span>)</div>
     <div id="show-active-btn">Active&nbsp;(<span id="active-tasks">0</span>)</div>
   </div>
 
-  <ul class="todo-list" id="todo-list">
+  <ul id="todo-list__items">
     <!-- To-do items added here -->
   </ul>
 
-  <div id='placeholder-text'>
+  <div id='todo-list__placeholder'>
     There are currently no tasks available
   </div>
 
-  <div class="delete-btn-div">
+  <div class="todo-list__delete-controls">
     <div class="button-container">
-      <button class="delete-btn delete-all-manual-btn"><i class="fa-solid fa-trash"></i> Delete All Manually Added Tasks</button>
+      <button class="todo-list__button--delete todo-list__button--delete-manual"><i class="fa-solid fa-trash"></i> Delete All Manually Added Tasks</button>
     </div>
     <div class="delete-all-button">
-      <button class="delete-btn delete-all-api-btn"><i class="fa-solid fa-trash"></i> Delete All API Tasks</button>
+      <button class="todo-list__button--delete todo-list__button--delete-api"><i class="fa-solid fa-trash"></i> Delete All API Tasks</button>
     </div>
     <div class="button-container">
-      <button id="delete-all" class="delete-btn delete-all-btn"><i class="fa-solid fa-trash"></i> Delete All Tasks</button>
+      <button id="delete-all" class="todo-list__button--delete delete-all-btn"><i class="fa-solid fa-trash"></i> Delete All Tasks</button>
     </div>
   </div>
 </div>
@@ -403,33 +395,33 @@ template.innerHTML = `
 
   <!-- Delete All Tasks Modal -->
   <div id="delete-confirmation-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal__content">
       <p>Are you sure you want to delete all tasks?</p>
-      <div class="modal-buttons">
-        <button id="confirm-delete-all" class="confirm-btn">Yes</button>
-        <button id="cancel-delete-all" class="cancel-btn">No</button>
+      <div class="modal__buttons">
+        <button id="confirm-delete-all" class="modal__button--confirm">Yes</button>
+        <button id="cancel-delete-all" class="modal__button--cancel">No</button>
       </div>
     </div>
   </div>
 
   <!-- Delete All API Tasks Modal -->
   <div id="delete-api-confirmation-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal__content">
       <p>Are you sure you want to delete all API tasks?</p>
-      <div class="modal-buttons">
-        <button id="confirm-delete-api" class="confirm-btn">Yes</button>
-        <button id="cancel-delete-api" class="cancel-btn">No</button>
+      <div class="modal__buttons">
+        <button id="confirm-delete-api" class="modal__button--confirm">Yes</button>
+        <button id="cancel-delete-api" class="modal__button--cancel">No</button>
       </div>
     </div>
   </div>
 
   <!-- Delete All Manually Added Tasks Modal -->
   <div id="delete-manual-confirmation-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal__content">
       <p>Are you sure you want to delete all manually added tasks?</p>
-      <div class="modal-buttons">
-        <button id="confirm-delete-manual" class="confirm-btn">Yes</button>
-        <button id="cancel-delete-manual" class="cancel-btn">No</button>
+      <div class="modal__buttons">
+        <button id="confirm-delete-manual" class="modal__button--confirm">Yes</button>
+        <button id="cancel-delete-manual" class="modal__button--cancel">No</button>
       </div>
     </div>
   </div>
@@ -453,7 +445,7 @@ export class TodoList extends HTMLElement {
         this.showActiveBtn = shadow.querySelector('#show-active-btn');
 
         // Handle adding new tasks
-        const addTodoBtn = shadow.querySelector('#add-todo-btn') as HTMLButtonElement | null;
+        const addTodoBtn = shadow.querySelector('#todo-list__button--add-task') as HTMLButtonElement | null;
         if (addTodoBtn) {
             addTodoBtn.addEventListener('click', () => {
                 this.addNewTask();
@@ -462,7 +454,7 @@ export class TodoList extends HTMLElement {
         }
 
         // Handle adding new tasks with Enter key press
-        const inputElement = shadow.querySelector('#new-todo-input') as HTMLInputElement | null;
+        const inputElement = shadow.querySelector('#todo-list__input--new-task') as HTMLInputElement | null;
         if (inputElement) {
             inputElement.addEventListener('keydown', (event: KeyboardEvent) => {
                 if (event.key === 'Enter') {
@@ -473,7 +465,7 @@ export class TodoList extends HTMLElement {
         }
 
         // Handle fetching and adding API tasks
-        const addTodoApiItemsBtn = shadow.querySelector('#add-todo-api-items-btn') as HTMLButtonElement | null;
+        const addTodoApiItemsBtn = shadow.querySelector('#todo-list__button--add-api-task') as HTMLButtonElement | null;
         if (addTodoApiItemsBtn) {
             addTodoApiItemsBtn.addEventListener('click', () => {
                 this.addApiTasks().then(() => this.updateTaskCounters());
@@ -481,7 +473,7 @@ export class TodoList extends HTMLElement {
         }
 
         // Handle fetching and adding API tasks with Enter key press
-        const inputElementApi = shadow.querySelector('#number-of-api-items') as HTMLInputElement | null;
+        const inputElementApi = shadow.querySelector('#todo-list__input--api-count') as HTMLInputElement | null;
         if (inputElementApi) {
             inputElementApi.addEventListener('keydown', (event: KeyboardEvent) => {
                 if (event.key === 'Enter') {
@@ -500,7 +492,7 @@ export class TodoList extends HTMLElement {
         // }
 
         // // Handle deleting all manually added tasks
-        // const deleteAllManualBtn = shadow.querySelector('.delete-all-manual-btn') as HTMLButtonElement | null;
+        // const deleteAllManualBtn = shadow.querySelector('.todo-list__button--delete-manual') as HTMLButtonElement | null;
         // if (deleteAllManualBtn) {
         //     deleteAllManualBtn.addEventListener('click', () => {
         //         this.deleteAllManualTasks();
@@ -509,7 +501,7 @@ export class TodoList extends HTMLElement {
         // }
 
         // // Handle deleting all API tasks
-        // const deleteAllApiBtn = shadow.querySelector('.delete-all-api-btn') as HTMLButtonElement | null;
+        // const deleteAllApiBtn = shadow.querySelector('.todo-list__button--delete-api') as HTMLButtonElement | null;
         // if (deleteAllApiBtn) {
         //     deleteAllApiBtn.addEventListener('click', () => {
         //         this.deleteAllApiTasks();
@@ -518,7 +510,7 @@ export class TodoList extends HTMLElement {
         // }
 
         // Handle updating task count after deleting a single task
-        const todoListContainer = shadow.querySelector('#todo-list') as HTMLUListElement | null;
+        const todoListContainer = shadow.querySelector('#todo-list__items') as HTMLUListElement | null;
         if (todoListContainer) {
             todoListContainer.addEventListener('click', () => {
                 this.updateTaskCounters();
@@ -582,7 +574,7 @@ export class TodoList extends HTMLElement {
         }
 
         // Handle deleting all API tasks with confirmation modal
-        const deleteAllApiBtn = shadow.querySelector('.delete-all-api-btn') as HTMLButtonElement | null;
+        const deleteAllApiBtn = shadow.querySelector('.todo-list__button--delete-api') as HTMLButtonElement | null;
         const deleteApiModal = shadow.querySelector('#delete-api-confirmation-modal') as HTMLDivElement | null;
         const confirmDeleteApiBtn = shadow.querySelector('#confirm-delete-api') as HTMLButtonElement | null;
         const cancelDeleteApiBtn = shadow.querySelector('#cancel-delete-api') as HTMLButtonElement | null;
@@ -608,7 +600,7 @@ export class TodoList extends HTMLElement {
 
 
         // Handle deleting all manually added tasks with confirmation modal
-        const deleteAllManualBtn = shadow.querySelector('.delete-all-manual-btn') as HTMLButtonElement | null;
+        const deleteAllManualBtn = shadow.querySelector('.todo-list__button--delete-manual') as HTMLButtonElement | null;
         const deleteManualModal = shadow.querySelector('#delete-manual-confirmation-modal') as HTMLDivElement | null;
         const confirmDeleteManualBtn = shadow.querySelector('#confirm-delete-manual') as HTMLButtonElement | null;
         const cancelDeleteManualBtn = shadow.querySelector('#cancel-delete-manual') as HTMLButtonElement | null;
@@ -634,8 +626,8 @@ export class TodoList extends HTMLElement {
 
         if (shadow) {
           const deleteAllBtn = shadow.querySelector('#delete-all') as HTMLButtonElement | null;
-          const deleteAllApiBtn = shadow.querySelector('.delete-all-api-btn') as HTMLButtonElement | null;
-          const deleteAllManualBtn = shadow.querySelector('.delete-all-manual-btn') as HTMLButtonElement | null;
+          const deleteAllApiBtn = shadow.querySelector('.todo-list__button--delete-api') as HTMLButtonElement | null;
+          const deleteAllManualBtn = shadow.querySelector('.todo-list__button--delete-manual') as HTMLButtonElement | null;
       
           // Initialize all delete buttons as hidden
           if (deleteAllBtn) deleteAllBtn.style.display = 'none';
@@ -647,15 +639,15 @@ export class TodoList extends HTMLElement {
     addNewTask() {
         const shadow = this.shadowRoot;
         if (shadow) {
-            const inputElem = shadow.querySelector('#new-todo-input') as HTMLInputElement | null;
-            const todoListContainer = shadow.querySelector('#todo-list') as HTMLUListElement | null;
-            const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+            const inputElem = shadow.querySelector('#todo-list__input--new-task') as HTMLInputElement | null;
+            const todoListContainer = shadow.querySelector('#todo-list__items') as HTMLUListElement | null;
+            const placeholderText = shadow.querySelector('#todo-list__placeholder') as HTMLDivElement | null;
 
             if (inputElem && todoListContainer && inputElem.value.trim() !== '') {
                 const todoItem = document.createElement('todo-item');
                 todoItem.setAttribute('task', inputElem.value);
                 todoItem.setAttribute('completed', 'false');
-                todoItem.classList.add('manual-task');
+                todoItem.classList.add('todo-list__item--manual');
                 todoItem.setAttribute('draggable', 'true');
                 todoListContainer.prepend(todoItem);
                 inputElem.value = '';
@@ -675,8 +667,8 @@ export class TodoList extends HTMLElement {
         return new Promise(async (resolve, reject) => {
             const shadow = this.shadowRoot;
             if (shadow) {
-                const numberOfApiItemsElem = shadow.querySelector('#number-of-api-items') as HTMLInputElement | null;
-                const todoListContainer = shadow.querySelector('#todo-list') as HTMLUListElement | null;
+                const numberOfApiItemsElem = shadow.querySelector('#todo-list__input--api-count') as HTMLInputElement | null;
+                const todoListContainer = shadow.querySelector('#todo-list__items') as HTMLUListElement | null;
                 const validationMessage = shadow.querySelector('#validation-message') as HTMLDivElement | null;
                 const messageElem = shadow.querySelector('#message') as HTMLDivElement | null;
 
@@ -714,7 +706,7 @@ export class TodoList extends HTMLElement {
                             const todoItem = document.createElement('todo-item');
                             todoItem.setAttribute('task', todo.todo);
                             todoItem.setAttribute('completed', String(todo.completed));
-                            todoItem.classList.add('api-task');
+                            todoItem.classList.add('todo-list__item--api');
                             todoItem.setAttribute('draggable', 'true');
                             todoListContainer.prepend(todoItem);
                         });
@@ -773,7 +765,7 @@ export class TodoList extends HTMLElement {
       event.preventDefault(); // Necessary to allow dropping
       const target = event.target as HTMLElement;
       const todoItem = target.closest('todo-item') as HTMLElement;
-      const todoListContainer = this.shadowRoot?.querySelector('#todo-list') as HTMLUListElement | null;
+      const todoListContainer = this.shadowRoot?.querySelector('#todo-list__items') as HTMLUListElement | null;
 
       if (todoListContainer && todoItem && this.draggedItem && todoItem !== this.draggedItem) {
           // Swap the positions of the dragged item and the item under the mouse
@@ -800,8 +792,8 @@ export class TodoList extends HTMLElement {
     deleteAllTasks() {
       const shadow = this.shadowRoot;
       if (shadow) {
-          const allTasksList = shadow.querySelector('#todo-list') as HTMLUListElement | null;
-          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+          const allTasksList = shadow.querySelector('#todo-list__items') as HTMLUListElement | null;
+          const placeholderText = shadow.querySelector('#todo-list__placeholder') as HTMLDivElement | null;
 
           if (allTasksList) {
             allTasksList.innerHTML = '';
@@ -818,8 +810,8 @@ export class TodoList extends HTMLElement {
     deleteAllManualTasks() {
       const shadow = this.shadowRoot;
       if (shadow) {
-          const manualTasks = shadow.querySelectorAll('.manual-task');
-          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+          const manualTasks = shadow.querySelectorAll('.todo-list__item--manual');
+          const placeholderText = shadow.querySelector('#todo-list__placeholder') as HTMLDivElement | null;
 
           manualTasks.forEach(task => task.remove());
 
@@ -835,8 +827,8 @@ export class TodoList extends HTMLElement {
     deleteAllApiTasks() {
       const shadow = this.shadowRoot;
       if (shadow) {
-          const apiTasks = shadow.querySelectorAll('.api-task');
-          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+          const apiTasks = shadow.querySelectorAll('.todo-list__item--api');
+          const placeholderText = shadow.querySelector('#todo-list__placeholder') as HTMLDivElement | null;
 
           apiTasks.forEach(task => task.remove());
 
@@ -855,18 +847,18 @@ export class TodoList extends HTMLElement {
           const totalTasksElem = shadow.querySelector('#total-tasks') as HTMLSpanElement | null;
           const completedTasksElem = shadow.querySelector('#completed-tasks') as HTMLSpanElement | null;
           const activeTasksElem = shadow.querySelector('#active-tasks') as HTMLSpanElement | null;
-          const placeholderText = shadow.querySelector('#placeholder-text') as HTMLDivElement | null;
+          const placeholderText = shadow.querySelector('#todo-list__placeholder') as HTMLDivElement | null;
 
           const allTasks = shadow.querySelectorAll('todo-item');
           const completedTasks = shadow.querySelectorAll('todo-item[completed="true"]');
           const activeTasks = shadow.querySelectorAll('todo-item[completed="false"]');
 
           const deleteAllBtn = shadow.querySelector('#delete-all') as HTMLButtonElement | null;
-          const deleteAllApiBtn = shadow.querySelector('.delete-all-api-btn') as HTMLButtonElement | null;
-          const deleteAllManualBtn = shadow.querySelector('.delete-all-manual-btn') as HTMLButtonElement | null;
+          const deleteAllApiBtn = shadow.querySelector('.todo-list__button--delete-api') as HTMLButtonElement | null;
+          const deleteAllManualBtn = shadow.querySelector('.todo-list__button--delete-manual') as HTMLButtonElement | null;
 
-          const apiTasks = shadow.querySelectorAll('.api-task');
-          const manualTasks = shadow.querySelectorAll('.manual-task');
+          const apiTasks = shadow.querySelectorAll('.todo-list__item--api');
+          const manualTasks = shadow.querySelectorAll('.todo-list__item--manual');
 
           // Hide or show the delete buttons based on the tasks available
         if (allTasks.length === 0) {
@@ -909,9 +901,9 @@ export class TodoList extends HTMLElement {
           const activeBtn = shadow.querySelector('#show-active-btn');
 
            // Clear all active-filter classes
-          allBtn?.classList.remove('active-filter');
-          completeBtn?.classList.remove('active-filter');
-          activeBtn?.classList.remove('active-filter');
+          allBtn?.classList.remove('todo-list__filter--active');
+          completeBtn?.classList.remove('todo-list__filter--active');
+          activeBtn?.classList.remove('todo-list__filter--active');
 
           allTasks.forEach(task => {
               const taskElement = task as HTMLElement;
@@ -922,7 +914,7 @@ export class TodoList extends HTMLElement {
               switch (filterType) {
                   case 'all':
                       taskElement.classList.add('visible'); // Show all tasks
-                      allBtn?.classList.add('active-filter');
+                      allBtn?.classList.add('todo-list__filter--active');
                       break;
                   case 'completed':
                       if (isCompleted) {
@@ -930,7 +922,7 @@ export class TodoList extends HTMLElement {
                       } else {
                           taskElement.classList.add('hidden'); // Hide non-completed tasks
                       }
-                      completeBtn?.classList.add('active-filter');
+                      completeBtn?.classList.add('todo-list__filter--active');
                       break;
                   case 'active':
                       if (!isCompleted) {
@@ -938,7 +930,7 @@ export class TodoList extends HTMLElement {
                       } else {
                           taskElement.classList.add('hidden'); // Hide completed tasks
                       }
-                      activeBtn?.classList.add('active-filter');
+                      activeBtn?.classList.add('todo-list__filter--active');
                       break;
               }
           });
