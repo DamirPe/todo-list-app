@@ -665,6 +665,7 @@ export class TodoList extends HTMLElement {
                     placeholderText.style.display = 'none';
                 }
                 this.updateTaskCounters();
+                this.filterTasks(this.currentFilter);
             }
         }
       }
@@ -754,6 +755,7 @@ export class TodoList extends HTMLElement {
                 }
             }
             this.updateTaskCounters();
+            this.filterTasks(this.currentFilter);
         });
     }
 
