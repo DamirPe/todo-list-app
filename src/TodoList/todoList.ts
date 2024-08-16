@@ -336,22 +336,8 @@ template.innerHTML = `
     opacity: 0.8;
   }
 
-  .name-on-top {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    margin-top: 0.5em;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    width: max-content;
-    font-style: italic;
-  }
 </style>
 <div class="todo-container">
-  <div class="name-on-top">Damir Penavić 📋</div>
-  <hr>
   <div class="todo-header-title">
     <div class="title-header">To-Do List</div>
   </div>
