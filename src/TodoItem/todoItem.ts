@@ -87,7 +87,7 @@ export class TodoItem extends HTMLElement {
   }
 
   connectedCallback() {
-    const task = this.getAttribute('task-list__text') || 'No task provided';
+    const task = this.getAttribute('task') || 'No task provided';
     const completed = this.getAttribute('completed') === 'true';
 
     const taskElement = this.shadowRoot?.querySelector('.task-list__text') as HTMLSpanElement;
